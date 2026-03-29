@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Taklifnoma from "./Taklifnoma/Taklifnoma";
 
 export default function App() {
