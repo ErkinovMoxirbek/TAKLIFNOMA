@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import './oriental-styles.css'; 
+import './oriental-styles.css';
 
 const translations = {
   uz: {
@@ -77,7 +77,7 @@ export default function OrientalInvitation() {
   const [isGateOpened, setIsGateOpened] = useState(false);
   const [isGateHidden, setIsGateHidden] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  
+
   // LocalStorage RSVP Hisoblagichi
   const [rsvpStatus, setRsvpStatus] = useState(() => {
     const savedStatus = localStorage.getItem('rsvpStatus');
@@ -98,7 +98,7 @@ export default function OrientalInvitation() {
   }, [counts]);
 
   const [timeLeft, setTimeLeft] = useState({ days: '00', hours: '00', minutes: '00', seconds: '00' });
-  const [copied, setCopied] = useState(false); 
+  const [copied, setCopied] = useState(false);
 
   const revealRefs = useRef([]);
   revealRefs.current = [];
@@ -107,7 +107,7 @@ export default function OrientalInvitation() {
   const t = translations[lang];
 
   useEffect(() => {
-    const targetDate = new Date("May 26, 2026 18:00:00").getTime();
+    const targetDate = new Date("August 19, 2026 18:00:00").getTime();
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distance = targetDate - now;
@@ -172,18 +172,18 @@ export default function OrientalInvitation() {
   };
 
   const handleCopyCard = () => {
-    const cardNumber = "4067 0700 0947 4359"; 
+    const cardNumber = "4067 0700 0947 4359";
     navigator.clipboard.writeText(cardNumber);
     setCopied(true);
-    setTimeout(() => setCopied(false), 3000); 
+    setTimeout(() => setCopied(false), 3000);
   };
 
-  const googleCalendarLink = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mohirbek+va+Nilufarxon+To'y+Tantanasi&dates=20260526T130000Z/20260526T180000Z&details=Bizning+quvonchli+kunimizda+mehmonimiz+bo'ling!&location=Imperial+Tantanalar+Saroyi,+Farg'ona";
+  const googleCalendarLink = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mohirbek+va+Nilufarxon+To'y+Tantanasi&dates=20260819T130000Z/20260819T180000Z&details=Bizning+quvonchli+kunimizda+mehmonimiz+bo'ling!&location=Imperial+Tantanalar+Saroyi,+Farg'ona";
 
   return (
     <div className="luxury-wrapper">
       <audio ref={audioRef} src="/assets/uzbek music.m4a" loop />
-      
+
       <div className="dot-pattern"></div>
       <div className="gold-dust"></div>
       <div className="gold-dust layer-2"></div>
@@ -205,22 +205,22 @@ export default function OrientalInvitation() {
           <div className="gate right">
             <div className="gate-edge right-edge"></div>
           </div>
-          
+
           <div className={`intro-center ${isGateOpened ? 'fade-out' : ''}`}>
             {/* Arkali Ramka (Ochiluvchi xat ko'rinishi) */}
             <div className="intro-frame">
-              
+
               {/* Tepada nafis yulduzchalar */}
-              <div style={{display: 'flex', justifyContent: 'center', gap: '40px', marginBottom: '20px'}}>
-                 <span className="star-icon text-glow">✦</span>
-                 <span className="star-icon text-glow">✦</span>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', marginBottom: '20px' }}>
+                <span className="star-icon text-glow">✦</span>
+                <span className="star-icon text-glow">✦</span>
               </div>
 
               <p className="intro-subtitle">{t.invitation}</p>
               <h1 className="main-names gold-text title-glow">MOHIRBEK <span className="ampersand">&</span> NILUFARXON</h1>
-              
+
               {/* JS xato bermasligi uchun oddiy yozuv */}
-              <p className="intro-date">26 . 05 . 2026</p>
+              <p className="intro-date">19 . 08 . 2026</p>
               <button className="capsule-btn glowing-btn pulse-effect" onClick={handleOpenGate}>
                 {t.openBtn}
               </button>
@@ -233,20 +233,20 @@ export default function OrientalInvitation() {
           ASOSIY SAHIFA QISMI
       ========================================== */}
       <div className={`main-scroll-content ${isGateOpened ? 'show' : ''}`}>
-        
+
         <button className={`music-fab ${isPlaying ? 'spin' : ''}`} onClick={toggleMusic}>
           {isPlaying ? '🎵' : '🔇'}
         </button>
 
         <section className="reveal" ref={addToRefs}>
           <p className="section-subtitle">{t.heroPre}</p>
-          <h1 className="main-names gold-text" style={{fontSize: '4.5rem', marginTop: '20px'}}>
-            MOHIRBEK <span className="ampersand pulsing-amp" style={{fontSize: '3rem'}}>&</span> NILUFARXON
+          <h1 className="main-names gold-text" style={{ fontSize: '4.5rem', marginTop: '20px' }}>
+            MOHIRBEK <span className="ampersand pulsing-amp" style={{ fontSize: '3rem' }}>&</span> NILUFARXON
           </h1>
-          <p className="intro-date" style={{marginTop: '20px'}}>26 . 05 . 2026</p>
+          <p className="intro-date" style={{ marginTop: '20px' }}>19 . 08 . 2026</p>
         </section>
 
-        <section className="reveal" ref={addToRefs} style={{marginTop: '50px'}}>
+        <section className="reveal" ref={addToRefs} style={{ marginTop: '50px' }}>
           <p className="formal-names">{t.formalNames}</p>
           <p className="main-lead" dangerouslySetInnerHTML={{ __html: t.mainLead }}></p>
         </section>
@@ -262,9 +262,9 @@ export default function OrientalInvitation() {
         <section className="reveal" ref={addToRefs}>
           <h2 className="section-title">{t.galleryTitle}</h2>
           <div className="photo-gallery">
-            <div className="photo-frame"><div className="photo-img" style={{backgroundImage: "url('/assets/image-1.png')"}}></div></div>
-            <div className="photo-frame"><div className="photo-img" style={{backgroundImage: "url('/assets/image-2.png')"}}></div></div>
-            <div className="photo-frame"><div className="photo-img" style={{backgroundImage: "url('/assets/image-3.png')"}}></div></div>
+            <div className="photo-frame"><div className="photo-img" style={{ backgroundImage: "url('/assets/image-1.png')" }}></div></div>
+            <div className="photo-frame"><div className="photo-img" style={{ backgroundImage: "url('/assets/image-2.png')" }}></div></div>
+            <div className="photo-frame"><div className="photo-img" style={{ backgroundImage: "url('/assets/image-3.png')" }}></div></div>
           </div>
         </section>
 
@@ -293,27 +293,30 @@ export default function OrientalInvitation() {
 
         <section className="reveal" ref={addToRefs}>
           <h2 className="section-title">{t.dressCodeTitle}</h2>
-          <p className="main-lead" style={{marginBottom: '30px'}}>{t.dressCodeText}</p>
+          <p className="main-lead" style={{ marginBottom: '30px' }}>{t.dressCodeText}</p>
           <div className="dress-colors">
-            <div className="d-color" style={{background: '#0a1912'}}></div>
-            <div className="d-color" style={{background: '#c0b283'}}></div>
-            <div className="d-color" style={{background: '#000000'}}></div>
-            <div className="d-color" style={{background: '#ffffff'}}></div>
+            <div className="d-color" style={{ background: '#0a1912' }}></div>
+            <div className="d-color" style={{ background: '#c0b283' }}></div>
+            <div className="d-color" style={{ background: '#000000' }}></div>
+            <div className="d-color" style={{ background: '#ffffff' }}></div>
           </div>
         </section>
 
         <section className="reveal" ref={addToRefs}>
           <h2 className="section-title">{t.locationTitle}</h2>
           <div className="address-box">
-            <h3 className="gold-text" style={{fontFamily: 'Cinzel, serif', fontSize: '2rem'}}>Imperial Tantanalar Saroyi</h3>
-            <p className="main-lead" style={{margin: '15px 0'}}>Farg'ona, Buvayda tumani</p>
-            <p className="intro-date" style={{fontSize: '1.2rem', margin: '20px 0'}}>{t.calendarTime}</p>
-            
+              <div className="photo-gallery">
+                <div className="photo-frame"><div className="photo-img" style={{ backgroundImage: "url('/assets/toyxona.png')" }}></div></div>
+              </div>
+            <h3 className="gold-text" style={{ fontFamily: 'Cinzel, serif', fontSize: '2rem' }}>Mumtoz Tantanalar Saroyi</h3>
+            <p className="main-lead" style={{ margin: '15px 0' }}>Farg'ona, Buvayda tumani</p>
+            <p className="intro-date" style={{ fontSize: '1.2rem', margin: '20px 0' }}>{t.calendarTime}</p>
+
             <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '20px' }}>
               <a href="https://yandex.uz/maps/-/CPVdUQMb" target="_blank" rel="noreferrer" className="capsule-btn outline-dark">
                 {t.mapBtn}
               </a>
-              <a href={googleCalendarLink} target="_blank" rel="noreferrer" className="capsule-btn outline-dark" style={{color: '#ceab5d', borderColor: '#ceab5d'}}>
+              <a href={googleCalendarLink} target="_blank" rel="noreferrer" className="capsule-btn outline-dark" style={{ color: '#ceab5d', borderColor: '#ceab5d' }}>
                 🗓 {t.saveCalendarBtn}
               </a>
             </div>
@@ -322,14 +325,14 @@ export default function OrientalInvitation() {
 
         <section className="reveal" ref={addToRefs}>
           <h2 className="section-title">{t.giftsTitle}</h2>
-          <p className="main-lead" style={{marginBottom: '30px'}}>{t.giftsText}</p>
-          
+          <p className="main-lead" style={{ marginBottom: '30px' }}>{t.giftsText}</p>
+
           <div className="bank-card">
             <div className="card-chip"></div>
             <div className="card-logo">Uzcard / Humo</div>
             <p className="card-number">4067 0700 0947 4359</p>
             <p className="card-name">ERIKOV MOHIRBEK</p>
-            
+
             <button className={`copy-btn ${copied ? 'copied' : ''}`} onClick={handleCopyCard}>
               {copied ? t.copiedBtn : t.copyBtn}
             </button>
@@ -339,21 +342,21 @@ export default function OrientalInvitation() {
         <section className="reveal rsvp-section" ref={addToRefs}>
           <h2 className="section-title rsvp-main-title">{t.rsvpTitle}</h2>
           <p className="rsvp-subtitle">{t.rsvpText}</p>
-          
+
           <div className="capsule-group">
             <button className={`capsule-btn rsvp-btn ${rsvpStatus === 'accept' ? 'active-accept' : ''}`} onClick={() => handleRsvp('accept')}>
-              <span className="rsvp-text">{t.btnAccept}</span> 
+              <span className="rsvp-text">{t.btnAccept}</span>
               <span className="count-circle">{counts.accept}</span>
             </button>
             <button className={`capsule-btn rsvp-btn ${rsvpStatus === 'decline' ? 'active-decline' : ''}`} onClick={() => handleRsvp('decline')}>
-              <span className="rsvp-text">{t.btnDecline}</span> 
+              <span className="rsvp-text">{t.btnDecline}</span>
               <span className="count-circle">{counts.decline}</span>
             </button>
           </div>
         </section>
 
         <footer style={{ textAlign: 'center', padding: '50px', color: '#666', fontSize: '0.8rem', letterSpacing: '2px' }}>
-          <a href='https://t.me/moxirbek_erkinov' target='_blank' rel='noreferrer' style={{color: '#a0a0a0', textDecoration: 'none'}}>MADE WITH ❤️ BY TELEGRAM</a> <br/><br/> Mohirbek & Nilufarxon | 2026
+          <a href='https://t.me/moxirbek_erkinov' target='_blank' rel='noreferrer' style={{ color: '#a0a0a0', textDecoration: 'none' }}>MADE WITH ❤️ BY TELEGRAM</a> <br /><br /> Mohirbek & Nilufarxon | 2026
         </footer>
 
       </div>
