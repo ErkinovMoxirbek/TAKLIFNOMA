@@ -1,0 +1,210 @@
+:root {
+  --bg: #0e0e10;
+  --glass: rgba(255, 255, 255, 0.07);
+  --glass-strong: rgba(255, 255, 255, 0.12);
+  --border: rgba(255, 255, 255, 0.16);
+  --text: #f4f1ec;
+  --muted: rgba(244, 241, 236, 0.6);
+  --accent: #d8c3a5;
+  --accent-soft: rgba(216, 195, 165, 0.18);
+  --radius: 28px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Manrope', -apple-system, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ---- import fonts in public/index.html <head>:
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+---- */
+
+.ig-wrap { position: relative; min-height: 100vh; }
+
+/* ---------- backgrounds ---------- */
+.ig-bg {
+  position: fixed; inset: 0; z-index: -2;
+  background:
+    radial-gradient(1200px 800px at 70% -10%, rgba(216,195,165,0.20), transparent 60%),
+    radial-gradient(900px 700px at 10% 110%, rgba(120,140,160,0.18), transparent 60%),
+    linear-gradient(160deg, #15151a 0%, #0c0c0e 100%);
+}
+.ig-noise {
+  position: fixed; inset: 0; z-index: -1; opacity: 0.04; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- language toggle ---------- */
+.ig-lang {
+  position: fixed; top: 18px; right: 18px; z-index: 50; display: flex; gap: 8px;
+  padding: 6px; border-radius: 999px; background: var(--glass);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--border);
+}
+.ig-lang button {
+  width: 38px; height: 38px; border-radius: 999px; border: none; background: transparent;
+  color: var(--muted); font-family: inherit; font-weight: 500; font-size: 13px; cursor: pointer; transition: .3s;
+}
+.ig-lang button.on { background: var(--text); color: #111; }
+
+/* ---------- gate (intro) ---------- */
+.ig-gate {
+  position: fixed; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center;
+  padding: 24px; animation: gateFade .8s ease;
+}
+.ig-gate-card {
+  text-align: center; padding: 56px 36px; max-width: 420px; width: 100%;
+  background: var(--glass); backdrop-filter: blur(30px) saturate(140%); -webkit-backdrop-filter: blur(30px) saturate(140%);
+  border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+}
+@keyframes gateFade { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+
+/* ---------- typography ---------- */
+.ig-eyebrow {
+  font-size: 12px; letter-spacing: 6px; color: var(--accent);
+  text-transform: uppercase; margin-bottom: 16px; font-weight: 500;
+}
+.ig-names {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: clamp(36px, 10vw, 60px); line-height: 1.05; letter-spacing: 1px;
+}
+.ig-names .amp { color: var(--accent); font-style: italic; }
+.ig-date { margin-top: 16px; font-size: 14px; letter-spacing: 5px; color: var(--muted); }
+.ig-title {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 32px; text-align: center; margin-bottom: 18px;
+}
+.ig-lead { text-align: center; font-weight: 300; font-size: 16px; color: var(--text); }
+.ig-quote {
+  text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 22px; line-height: 1.5; color: var(--accent);
+}
+
+/* ---------- content reveal ---------- */
+.ig-content { opacity: 0; transition: opacity 1s ease; pointer-events: none; }
+.ig-content.show { opacity: 1; pointer-events: auto; }
+
+/* ---------- hero ---------- */
+.ig-hero {
+  min-height: 100svh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 24px;
+}
+.ig-photo {
+  width: 230px; height: 300px; border-radius: 24px; margin-bottom: 34px;
+  background: linear-gradient(145deg, #c9b99c, #8a7f6e);
+  background-size: cover; background-position: center;
+  border: 1px solid var(--border); box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+  will-change: transform;
+}
+
+/* ---------- glass card ---------- */
+.ig-card {
+  background: var(--glass); backdrop-filter: blur(24px) saturate(140%); -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 46px 30px; margin: 22px auto; max-width: 560px; width: calc(100% - 36px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+/* ---------- countdown ---------- */
+.ig-timer { display: flex; justify-content: center; gap: 12px; }
+.ig-timer .tb {
+  flex: 1; max-width: 88px; text-align: center;
+  background: var(--accent-soft); border: 1px solid var(--border);
+  border-radius: 18px; padding: 16px 6px;
+}
+.ig-timer .v { display: block; font-family: 'Cormorant Garamond', serif; font-size: 32px; line-height: 1; }
+.ig-timer .l { display: block; font-size: 10px; letter-spacing: 2px; color: var(--muted); margin-top: 8px; }
+
+/* ---------- gallery ---------- */
+.ig-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.ig-g {
+  aspect-ratio: 3/4; border-radius: 18px; background-color: #2a2a2e;
+  background-size: cover; background-position: center; border: 1px solid var(--border);
+}
+
+/* ---------- program timeline ---------- */
+.ig-row {
+  display: flex; align-items: center; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--border);
+}
+.ig-row:last-child { border-bottom: none; }
+.ig-row .tm { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--accent); width: 64px; flex-shrink: 0; }
+.ig-row span:last-child { font-weight: 300; font-size: 15px; }
+
+/* ---------- dress colors ---------- */
+.ig-colors { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
+.ig-colors span {
+  width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* ---------- venue ---------- */
+.ig-venue {
+  width: 100%; aspect-ratio: 16/10; border-radius: 18px; margin-bottom: 22px;
+  background-color: #2a2a2e; background-size: cover; background-position: center; border: 1px solid var(--border);
+}
+.ig-venue-name { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 26px; text-align: center; }
+.ig-time { text-align: center; color: var(--accent); font-size: 15px; letter-spacing: 2px; margin-top: 10px; }
+
+/* ---------- bank card ---------- */
+.ig-bankcard {
+  position: relative; max-width: 360px; margin: 26px auto 22px; aspect-ratio: 1.6/1;
+  border-radius: 20px; padding: 24px;
+  background: linear-gradient(135deg, rgba(216,195,165,0.25), rgba(255,255,255,0.05));
+  border: 1px solid var(--border); backdrop-filter: blur(10px); overflow: hidden;
+}
+.ig-bankcard .chip {
+  width: 42px; height: 32px; border-radius: 6px;
+  background: linear-gradient(135deg, #e8d9b8, #b89b6e);
+}
+.ig-bankcard .brand { position: absolute; top: 24px; right: 24px; font-size: 13px; color: var(--muted); }
+.ig-bankcard .num {
+  position: absolute; bottom: 56px; left: 24px; font-size: 20px; letter-spacing: 2px; font-weight: 400;
+}
+.ig-bankcard .holder { position: absolute; bottom: 22px; left: 24px; font-size: 13px; letter-spacing: 1px; color: var(--muted); }
+
+/* ---------- buttons ---------- */
+.ig-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px 26px; border-radius: 999px; font-family: inherit; font-weight: 500;
+  font-size: 14px; letter-spacing: 1px; cursor: pointer; border: 1px solid var(--border);
+  background: var(--glass-strong); color: var(--text); transition: .3s;
+  backdrop-filter: blur(10px); text-decoration: none;
+}
+.ig-btn:hover { background: var(--text); color: #111; }
+.ig-btn.done { background: var(--accent); color: #111; border-color: var(--accent); }
+.ig-open { margin-top: 28px; }
+.ig-btn-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 24px; }
+
+/* ---------- rsvp ---------- */
+.ig-rsvp { display: flex; gap: 14px; margin-top: 24px; }
+.ig-rsvp .ig-btn { flex: 1; flex-direction: column; padding: 18px; }
+.ig-rsvp .ig-btn .cnt { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.ig-rsvp .ig-btn.on { background: var(--accent); color: #111; border-color: var(--accent); }
+.ig-rsvp .ig-btn.on .cnt { color: rgba(0,0,0,0.6); }
+
+/* ---------- music fab ---------- */
+.ig-music {
+  position: fixed; bottom: 20px; right: 20px; z-index: 45; width: 50px; height: 50px;
+  border-radius: 50%; border: 1px solid var(--border); background: var(--glass);
+  backdrop-filter: blur(20px); color: var(--text); font-size: 18px; cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+}
+
+/* ---------- scroll reveal ---------- */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- footer ---------- */
+.ig-footer { text-align: center; padding: 50px 20px; color: var(--muted); font-size: 12px; letter-spacing: 2px; }
+.ig-footer a { color: var(--accent); text-decoration: none; }
+
+/* ---------- mobile ---------- */
+@media (max-width: 480px) {
+  .ig-card { padding: 36px 22px; }
+  .ig-timer .v { font-size: 26px; }
+  .ig-quote { font-size: 19px; }
+}
