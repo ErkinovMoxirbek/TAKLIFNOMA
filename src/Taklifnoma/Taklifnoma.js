@@ -507,7 +507,7 @@ export default function OrientalInvitation() {
               <p className="sg-eyebrow">{t.eyebrow}</p>
               <h1 className="sg-names sg-glow">
                 <SplitText text="Mohirbek"/>
-                {' '}<span className="amp">&amp;</span>{' '}
+                <br/><span className="amp">&amp;</span><br/>
                 <SplitText text="Nilufarxon"/>
               </h1>
               <div className="sg-divider"/>
