@@ -571,7 +571,7 @@ export default function OrientalInvitation() {
           <div className="sg-card-inner">
             <h2 className="sg-title sg-glow"><span>{t.gallery}</span></h2>
             <div className="sg-gallery">
-              {[['image-1.png',0],['image-2.png',120],['image-3.png',240]].map(([img,delay])=>(
+              {[['image-4.png',0],['image-2.png',120],['image-3.png',240]].map(([img,delay])=>(
                 <div key={img} className="sg-g" data-delay={delay}
                   style={{backgroundImage:`url('/assets/${img}')`}}
                   onMouseMove={onTilt} onMouseLeave={resetTilt}/>
